@@ -1,0 +1,116 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/%22%3E">
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<style>
+.navbar{
+box-shadow:0 0 25px 0 black;
+background-color:black;
+justify-content:center;
+}
+.hwhite{
+color:white;
+}
+.hwhite:hover{
+color:grey;
+}
+td{
+font-size:large;
+}
+.ktm:hover{
+background-color:black;
+color:white;
+}
+.size{
+width:50%;
+}
+
+.navbar .container, .navbar .container-fluid, .navbar .container-lg, .navbar .container-md, .navbar .container-sm, .navbar .container-xl {
+margin-left: 450px;
+}
+</style>
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+							
+        
+        <li class="nav-item">
+          <a class="nav-link" href="listaAuto"><H1 class="hwhite" >Auto </H1></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="listaGuasti"><H1 class="hwhite"> Guasti</H1></a>
+        </li>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="listaAutoGuaste"><H1 class="hwhite"> Auto Guaste</H1></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<meta charset="UTF-8">
+<title>Officina</title>
+</head>
+<body>
+<center>
+<br><br>
+<h1>Lista Auto Guaste</h1><br><br>
+<table class="table">
+<tr>
+<td>ID RIPARAZIONE</td>
+<td>TARGA </td>
+<td>MARCA</td>
+<td>MODELLO</td>
+<td>NOME GUASTO</td>
+<td>TIPO GUASTO</td>
+<td>COSTO GUASTO</td>
+</tr>
+<tr class="ktm" th:each= "possiede : ${possiedi}" th:if="${possiede.scelta==false}">
+	<form action='riparaAutoG' method='post'>
+	<td><input name="id" th:value= "${possiede.id}"type="hidden" th:text= "${possiede.id}">
+	<input name="auto.idAuto" th:value= "${possiede.auto.idAuto}"type="hidden">
+	<input name="guasto.idGuasto" th:value= "${possiede.guasto.idGuasto}"type="hidden" ></td>
+	<td><input name="auto.targa" th:value= "${possiede.auto.targa}" type="hidden" th:text= "${possiede.auto.targa}"></td>
+	<td><input name="auto.marca" th:value= "${possiede.auto.marca}" type="hidden" th:text= "${possiede.auto.marca}"></td>
+	<td><input name="auto.modello" th:value= "${possiede.auto.modello}" type="hidden" th:text= "${possiede.auto.modello}"></td>
+	<td><input name="guasto.nomeGuasto" th:value= "${possiede.guasto.nomeGuasto}" type="hidden" th:text= "${possiede.guasto.nomeGuasto}"></td>
+	<td><input name="guasto.tipoGuasto" th:value= "${possiede.guasto.tipoGuasto}" type="hidden" th:text= "${possiede.guasto.tipoGuasto}"></td>
+	<td><input name="costo" th:value= "${possiede.costo}" type="hidden" th:text="${possiede.costo}">€</td>
+	 <td><button type='submit' name='ripara' class='btn btn-outline-success'>RIPARATA</button></td> 
+	 </form>
+	 </tr>
+	 </table><br>
+	 <h1>Lista Auto Riparate</h1><br><br>
+<table class="table">
+<tr>
+<td>ID RIPARAZIONE</td>
+<td>TARGA </td>
+<td>MARCA</td>
+<td>MODELLO</td>
+<td>NOME GUASTO</td>
+<td>TIPO GUASTO</td>
+<td>COSTO GUASTO</td>
+</tr>
+
+	<tr class="ktm" th:each= "possiede : ${possiedi}" th:if="${possiede.scelta==true}">
+	<form action='riparaAutoG' method='post'>
+	<td><input name="id" th:value= "${possiede.id}"type="hidden" th:text= "${possiede.id}">
+	<input name="auto.idAuto" th:value= "${possiede.auto.idAuto}"type="hidden">
+	<input name="guasto.idGuasto" th:value= "${possiede.guasto.idGuasto}"type="hidden" ></td>
+	<td><input name="auto.targa" th:value= "${possiede.auto.targa}" type="hidden" th:text= "${possiede.auto.targa}"></td>
+	<td><input name="auto.marca" th:value= "${possiede.auto.marca}" type="hidden" th:text= "${possiede.auto.marca}"></td>
+	<td><input name="auto.modello" th:value= "${possiede.auto.modello}" type="hidden" th:text= "${possiede.auto.modello}"></td>
+	<td><input name="guasto.nomeGuasto" th:value= "${possiede.guasto.nomeGuasto}" type="hidden" th:text= "${possiede.guasto.nomeGuasto}"></td>
+	<td><input name="guasto.tipoGuasto" th:value= "${possiede.guasto.tipoGuasto}" type="hidden" th:text= "${possiede.guasto.tipoGuasto}"></td>
+	<td><input name="costo" th:value= "${possiede.costo}" type="hidden" th:text= "${possiede.costo}">€</td>
+	
+	 </form>
+	 </tr>
+	  
+</table><br>
+</center>
+</body>
+</html>
+

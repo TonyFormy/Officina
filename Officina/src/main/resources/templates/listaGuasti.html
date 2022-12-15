@@ -1,0 +1,89 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/%22%3E">
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<style>
+.navbar{
+box-shadow:0 0 25px 0 black;
+background-color:black;
+justify-content:center;
+}
+.hwhite{
+color:white;
+}
+.hwhite:hover{
+color:grey;
+}
+td{
+font-size:large;
+}
+.ktm:hover{
+background-color:black;
+color:white;
+}
+.size{
+width:50%;
+}
+
+.navbar .container, .navbar .container-fluid, .navbar .container-lg, .navbar .container-md, .navbar .container-sm, .navbar .container-xl {
+margin-left: 450px;
+}
+</style>
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+							
+        
+        <li class="nav-item">
+          <a class="nav-link" href="listaAuto"><H1 class="hwhite" >Auto </H1></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="listaGuasti"><H1 class="hwhite"> Guasti</H1></a>
+        </li>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="listaAutoGuaste"><H1 class="hwhite"> Auto Guaste</H1></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<meta charset="UTF-8">
+<title>Officina</title>
+</head>
+<body>
+<center>
+<br><br>
+<h1>Lista Guasti</h1><br><br>
+<table class="table">
+<tr>
+<td>ID GUASTO</td>
+<td>NOME GUASTO</td>
+<td>TIPO GUASTO</td>
+</tr>
+<tr class="ktm" th:each= "guasto : ${guasti}">
+	<form action='eliminaGuasto' method='post'>
+	<td><input name="idGuasto" th:value= "${guasto.idGuasto}" type="hidden" th:text= "${guasto.idGuasto}"></td>
+	<td><input name="nomeGuasto" th:value= "${guasto.nomeGuasto}"type="hidden" th:text= "${guasto.nomeGuasto}"></td>
+	<td><input name="tipoGuasto" th:value= "${guasto.tipoGuasto}" type="hidden" th:text= "${guasto.tipoGuasto}"></td>
+	  <td><button type='submit' name='elimina' class='btn btn-outline-danger'>ELIMINA</button></td>
+	  </form>
+</tr>
+</table>
+
+<h1>Aggiungi Guasto</h1><br><br>
+<table class="table">
+<tr class="ktm" >
+	<form method="POST" action="aggGuasto" >
+	<h2><input type="text" name="nome_guasto"  class="form-control" placeholder= "inserisci nome guasto" required></h2><br><br>
+	<h2><input type="text" name="tipo_guasto"  class="form-control" placeholder= "inserisci tipo guasto" required></h2><br><br>
+	<button type="submit" name="aggiungi" class="btn btn-outline-success">AGGIUNGI</button></td>
+	</form>
+</tr>
+</table>
+
+</center>
+</body>
+</html>
